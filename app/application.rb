@@ -1,6 +1,6 @@
 class Application
 
-  @@items = []
+  @@items = [Item.new("Figs",3.42),Item.new("Pears",0.99)]
   def call(env)
     resp = Rack::Response.new
     req = Rack::Request.new(env)
@@ -12,8 +12,8 @@ class Application
 
       resp.write item.price
     else
-      resp.write "Route not found"
-      resp.status = 404
+      resp.write "Item not found"
+      resp.status = 400
     end
 
     resp.finish
